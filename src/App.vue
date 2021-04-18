@@ -2,12 +2,15 @@
   <div id="app">
     <el-container>
       <el-header>
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-menu-item index="2">处理中心</el-menu-item>
-          <el-menu-item index="3">消息中心</el-menu-item>
+        <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu-item index="/indexA" >处理中心</el-menu-item>
+          <el-menu-item index="/indexB" >处理中心</el-menu-item>
+          <el-menu-item index="/indexC" >消息中心</el-menu-item>
         </el-menu>
       </el-header>
+      
+      <!-- <router-link to="/indexA">Go to Bar</router-link> -->
+      <router-view></router-view>
 
       <el-main>
         <el-tabs type="border-card">
@@ -141,7 +144,7 @@
 export default {
     data() {
       return {
-        activeIndex: '1',
+        activeIndex: 'indexA',
 
         dialogVisible: false,
 
@@ -255,6 +258,9 @@ export default {
       filterText(val) {
         this.$refs.tree.filter(val);
       }
+    },
+    created() {
+      this.activeIndex = this.$route.path.match(/\/[^\/]*/)[0]
     },
     methods: {
       handleSelect(key, keyPath) {
