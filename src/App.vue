@@ -30,7 +30,7 @@
         <span>这是一段信息</span>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          <el-button type="primary" icon="el-icon-search" @click="dialogVisible = false">确 定</el-button>
         </span>
       </el-dialog>
 
@@ -52,12 +52,28 @@
           <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
         </div>
       </el-dialog>
+<!-- 
+      <el-button @click="drawer = true" type="primary" style="margin-left: 16px;">
+        点我打开
+      </el-button> -->
+
+      <!-- <el-drawer
+        title="我是标题"
+        :visible.sync="drawer"
+        :direction="direction"
+        :before-close="handleClose">
+        <span>我来啦!</span>
+      </el-drawer> -->
 
       <el-table
         :data="tableData"
         stripe
         v-loading="false"
         style="width: 100%">
+        <el-table-column
+          type="selection"
+          width="55">
+        </el-table-column>
         <el-table-column
           prop="date"
           label="日期"
@@ -76,7 +92,7 @@
 
       <el-pagination
         background
-        layout="prev, pager, next"
+        layout="total, sizes, prev, pager, next"
         :total="1000">
       </el-pagination>
 
